@@ -1,351 +1,271 @@
 <!DOCTYPE html>
-<html lang="bn" class="scroll-smooth">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afifa Arduino Project Store</title>
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts Inter & Noto Sans Bengali -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Inter & SolaimanLipi -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Noto Sans Bengali', 'Inter', sans-serif;
-        }
-        .rainbow-gradient {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 35%, #db2777 70%, #f59e0b 100%);
-        }
-        .card-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-        }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
-            50% { box-shadow: 0 0 35px rgba(219, 39, 119, 0.5); }
-        }
-        .glowing-card {
-            animation: pulse-glow 4s infinite ease-in-out;
+            font-family: 'Hind Siliguri', sans-serif;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50/50 via-purple-50/30 to-pink-50/50 text-slate-800 min-h-screen flex flex-col justify-between">
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen text-gray-800 flex flex-col justify-between">
 
-    <header class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rainbow-gradient rounded-2xl flex items-center justify-center text-white text-xl shadow-lg shadow-purple-500/30 transform hover:scale-105 transition duration-300">
-                    <i class="fa-solid fa-microchip animate-pulse"></i>
+    <!-- Header / Navbar -->
+    <header class="bg-gradient-to-r from-violet-700 via-purple-600 to-pink-600 shadow-xl text-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer" onclick="location.reload()">
+                <div class="bg-white/20 p-2.5 rounded-2xl backdrop-blur-md shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                    </svg>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        Afifa Arduino Project Store
-                    </h1>
-                    <p class="text-xs font-medium text-purple-600/80">সেরা সব ইলেকট্রনিক্স ও আর্ডুইনো প্রজেক্ট সংগ্রহ</p>
+                    <h1 class="text-2xl font-bold tracking-wide drop-shadow-md">Afifa Arduino Project Store</h1>
+                    <p class="text-xs text-purple-200">আপনার প্রয়োজনীয় সব অডিও-ইলেকট্রনিক্স ও মাইক্রোকন্ট্রোলার প্রজেক্ট</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="openAdminLoginModal()" class="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md shadow-purple-500/20 transition-all transform hover:-translate-y-0.5 text-sm">
-                    <i class="fa-solid fa-lock-open"></i>
-                    <span class="hidden sm:inline">এডমিন আপলোড</span>
-                    <span class="sm:hidden">আপলোড</span>
+            <div class="flex items-center gap-3">
+                <button onclick="openAdminModal()" class="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold px-5 py-2.5 rounded-xl shadow-lg transition-all transform hover:scale-105 flex items-center gap-2 cursor-pointer border border-amber-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    এডমিন আপলোড প্যানেল
                 </button>
             </div>
         </div>
     </header>
 
-    <section class="rainbow-gradient text-white py-16 px-4 shadow-2xl relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-10 -top-10 w-80 h-80 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
-        
-        <div class="max-w-4xl mx-auto text-center space-y-5 relative z-10">
-            <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/30 shadow-inner">
-                <i class="fa-solid fa-bolt text-yellow-300"></i> প্রিমিয়াম সোর্স কোড ও পিনআউট হাব
-            </span>
-            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Afifa Arduino Project Store-এ স্বাগতম</h2>
-            <p class="text-purple-100 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-                প্রতিটি প্রজেক্টের সম্পূর্ণ সোর্স কোড ও পিনআউট ডায়াগ্রাম পান মাত্র ২০০ টাকায়। বিকাশ পেমেন্ট সম্পন্ন করে যেকোনো প্রজেক্ট মুহূর্তেই আনলক করুন!
-            </p>
-            <div class="pt-3 flex flex-wrap justify-center gap-4 text-sm font-semibold">
-                <span class="bg-black/30 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/20 shadow-lg flex items-center gap-2.5">
-                    <i class="fa-solid fa-tag text-pink-400"></i> মূল্য: ২০০ টাকা (প্রতি প্রজেক্ট)
-                </span>
-                <span class="bg-black/30 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/20 shadow-lg flex items-center gap-2.5">
-                    <i class="fa-solid fa-mobile-screen-button text-cyan-400"></i> বিকাশ নম্বর: <span class="text-yellow-300 font-bold select-all">০১৭১৪৯৬৯৯২৪</span>
-                </span>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-10 flex-grow w-full">
+        <!-- Hero Section -->
+        <div class="text-center mb-12 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-60 h-60 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 drop-shadow-md">সেরা সব আর্ডুইনো ও ইলেকট্রনিক্স প্রজেক্ট</h2>
+            <p class="text-lg text-purple-100 max-w-2xl mx-auto mb-6">প্রতিটি প্রজেক্টের সম্পূর্ণ কোড, সার্কিট ডায়াগ্রাম ও পিনআউট ফাইল ডাউনলোডের জন্য নির্ধারিত মূল্য মাত্র <span class="bg-amber-400 text-gray-900 px-3 py-1 rounded-lg font-bold">২০০ টাকা</span>।</p>
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 text-sm font-medium">
+                <span class="w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
+                বিকাশ মার্চেন্ট/পার্সোনাল নম্বর: <span class="font-bold text-yellow-300 tracking-wider text-base">01714969924</span>
             </div>
         </div>
-    </section>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <div class="flex items-center justify-between mb-8 border-b border-purple-100 pb-4">
-            <h3 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2.5">
-                <span class="w-8 h-8 rounded-lg bg-purple-600 text-white flex items-center justify-center text-sm shadow-md">
-                    <i class="fa-solid fa-cubes"></i>
-                </span>
-                প্রজেক্ট ক্যাটাগরি ও তালিকা
-            </h3>
-            <span id="projectCount" class="text-xs sm:text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1.5 rounded-full font-bold shadow-md shadow-purple-500/20">০ টি প্রজেক্ট</span>
-        </div>
-
-        <!-- Project Grid Container -->
-        <div id="projectGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamically inserted project cards will appear here -->
-        </div>
-
-        <!-- Empty State Container -->
-        <div id="emptyState" class="hidden text-center py-20 bg-white/80 backdrop-blur-md rounded-3xl shadow-xl border border-purple-100 my-8">
-            <div class="w-20 h-20 bg-gradient-to-tr from-purple-500 to-pink-500 text-white rounded-3xl flex items-center justify-center mx-auto text-3xl mb-4 shadow-lg shadow-purple-500/30">
-                <i class="fa-solid fa-box-open"></i>
-            </div>
-            <h4 class="text-xl font-bold text-slate-800">কোনো প্রজেক্ট পাওয়া যায়নি</h4>
-            <p class="text-slate-500 text-sm mt-1 max-w-sm mx-auto">শীঘ্রই নতুন আকর্ষণীয় প্রজেক্ট আপলোড করা হবে অথবা আপনি নিজে এডমিন প্যানেল থেকে নতুন প্রজেক্ট যোগ করতে পারেন।</p>
+        <!-- Projects Grid Container -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamic Projects will load here -->
         </div>
     </main>
 
-    <div id="paymentModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative transform transition-all border border-purple-100">
-            <button onclick="closePaymentModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-rose-100 hover:text-rose-600 text-slate-500 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-gradient-to-tr from-pink-500 to-rose-600 text-white rounded-2xl flex items-center justify-center mx-auto text-2xl mb-3 shadow-lg shadow-pink-500/30">
-                    <i class="fa-solid fa-wallet"></i>
-                </div>
-                <h3 class="text-2xl font-extrabold text-slate-900">বিকাশ পেমেন্ট ও আনলক</h3>
-                <p class="text-xs font-medium text-slate-500 mt-1" id="modalProjectTitle">প্রজেক্ট নাম</p>
-            </div>
-
-            <div class="bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-200 rounded-2xl p-4 mb-6 text-sm space-y-2 text-slate-700 shadow-inner">
-                <p class="font-bold text-pink-900 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-info text-pink-600"></i> পেমেন্ট নির্দেশিকা:
-                </p>
-                <ol class="list-decimal list-inside space-y-1.5 text-xs text-slate-600">
-                    <li>আপনার বিকাশ অ্যাপ বা ডায়াল কোড (*২৪৭#) থেকে নিচের নম্বরে <strong class="text-pink-700 font-extrabold">২০০ টাকা</strong> সেন্ড মানি করুন।</li>
-                    <li>বিকাশ নম্বর: <strong class="text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-pink-300 font-mono text-sm tracking-wider select-all shadow-sm">০১৭১৪৯৬৯৯২৪</strong></li>
-                    <li>টাকা পাঠানোর পর প্রাপ্ত <strong class="text-pink-700 font-bold">TrxID</strong> এবং আপনার বিকাশ নম্বর নিচে প্রদান করুন।</li>
-                </ol>
-            </div>
-
-            <form id="paymentForm" onsubmit="submitPayment(event)" class="space-y-4">
-                <input type="hidden" id="paymentProjectId">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">আপনার বিকাশ মোবাইল নম্বর</label>
-                    <input type="text" id="userBkashNumber" required placeholder="যেমন: 017XXXXXXXX" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white text-sm outline-none transition font-medium">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">বিকাশ ট্রানজাকশন আইডি (TrxID)</label>
-                    <input type="text" id="userTrxId" required placeholder="যেমন: 9G8H7F6E5D" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white text-sm uppercase outline-none transition font-mono tracking-wider font-bold">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-bold py-3.5 rounded-2xl shadow-xl shadow-pink-600/30 transition duration-200 text-sm flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-unlock-keyhole"></i> পেমেন্ট নিশ্চিত করুন ও আনলক করুন
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="adminLoginModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-8 shadow-2xl relative border border-purple-100">
-            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-gradient-to-tr from-slate-800 to-indigo-900 text-white rounded-2xl flex items-center justify-center mx-auto text-2xl mb-3 shadow-lg shadow-indigo-900/30">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <h3 class="text-xl font-extrabold text-slate-900">এডমিন সিক্রেট পিন</h3>
-                <p class="text-xs font-medium text-slate-500 mt-1">প্রজেক্ট আপলোড করতে সঠিক পিন কোড দিন (1986)</p>
-            </div>
-            <form onsubmit="verifyAdminPin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">সিক্রেট পিন কোড</label>
-                    <input type="password" id="adminPinInput" required placeholder="••••" maxlength="6" class="w-full px-4 py-3.5 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-indigo-600 focus:bg-white text-center tracking-[0.5em] text-xl font-extrabold outline-none transition">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-slate-900 to-indigo-900 hover:from-slate-800 hover:to-indigo-800 text-white font-bold py-3.5 rounded-2xl shadow-xl shadow-slate-900/20 transition duration-200 text-sm flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-right-to-bracket"></i> প্রবেশ করুন
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="adminUploadModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto border border-purple-100">
-            <button onclick="closeAdminUploadModal()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-rose-100 hover:text-rose-600 text-slate-500 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <div class="flex items-center space-x-3.5 mb-6">
-                <div class="w-12 h-12 bg-gradient-to-tr from-purple-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-extrabold text-slate-900">নতুন প্রজেক্ট আপলোড প্যানেল</h3>
-                    <p class="text-xs font-medium text-slate-500">সকল তথ্য পূরণ করে নতুন প্রজেক্ট পাবলিশ করুন</p>
-                </div>
-            </div>
-
-            <form id="uploadProjectForm" onsubmit="handleProjectUpload(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">প্রজেক্টের নাম</label>
-                    <input type="text" id="newTitle" required placeholder="যেমন: আরডুইনো হোম অটোমেশন সিস্টেম" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-purple-600 focus:bg-white text-sm outline-none font-medium">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">প্রজেক্টের বিবরণ</label>
-                    <textarea id="newDesc" required rows="3" placeholder="প্রজেক্ট সম্পর্কে বিস্তারিত লিখুন..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-purple-600 focus:bg-white text-sm outline-none font-medium"></textarea>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">ছবির লিংক (Image URL)</label>
-                    <input type="url" id="newImage" required placeholder="https://example.com/image.jpg" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-purple-600 focus:bg-white text-sm outline-none font-medium">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">সোর্স কোড (Arduino Code)</label>
-                    <textarea id="newCode" required rows="3" placeholder="সরাসরি সোর্স কোড এখানে পেস্ট করুন..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-purple-600 focus:bg-white text-sm font-mono text-xs outline-none"></textarea>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">পিনআউট (Pinout) ফাইল বা ডায়াগ্রাম লিংক</label>
-                    <input type="url" id="newPinout" required placeholder="https://example.com/pinout-diagram.png" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-purple-600 focus:bg-white text-sm outline-none font-medium">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl shadow-xl shadow-purple-600/30 transition text-sm flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-circle-plus"></i> প্রজেক্ট পাবলিশ করুন
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="customAlertModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl relative border border-purple-100">
-            <div id="alertIconBox" class="w-16 h-16 bg-gradient-to-tr from-purple-500 to-pink-500 text-white rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4 shadow-lg shadow-purple-500/30">
-                <i id="alertIcon" class="fa-solid fa-circle-check"></i>
-            </div>
-            <h3 id="alertTitle" class="text-xl font-extrabold text-slate-900 mb-2">সফল হয়েছে!</h3>
-            <p id="alertMessage" class="text-sm text-slate-600 mb-6 font-medium">আপনার অনুরোধটি সফলভাবে সম্পন্ন হয়েছে।</p>
-            <button onclick="closeCustomAlert()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3 rounded-2xl transition text-sm shadow-lg shadow-purple-600/30">
-                ঠিক আছে
-            </button>
-        </div>
-    </div>
-
-    <footer class="bg-white/95 backdrop-blur-md border-t border-purple-100 mt-auto py-10 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-            <div>
-                <p class="text-base font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Afifa Arduino Project Store</p>
-                <p class="text-xs font-medium text-slate-500 mt-1">সর্বস্বত্ব সংরক্ষিত © ২০২৬ | সহজ ও সাশ্রয়ী মূল্যে প্রিমিয়াম প্রজেক্ট সোর্স কোড।</p>
-            </div>
-            <div class="flex items-center space-x-3 text-sm font-semibold bg-purple-50 px-5 py-2.5 rounded-2xl border border-purple-200 text-purple-900 shadow-sm">
-                <i class="fa-solid fa-headset text-purple-600"></i>
-                <span>বিকাশ হেল্পলাইন: <strong class="text-pink-600 font-bold select-all">০১৭১৪৯৬৯৯২৪</strong></span>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <p class="text-base font-medium text-white">Afifa Arduino Project Store &copy; 2026 | সর্বস্বত্ব সংরক্ষিত</p>
+            <p class="text-sm text-gray-400">সহজ বাংলায় ইলেকট্রনিক্স এবং মাইক্রোকন্ট্রোলার প্রজেক্ট শিখুন ও তৈরি করুন।</p>
         </div>
     </footer>
 
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative transform transition-all animate-bounce-short">
+            <button onclick="closePaymentModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 bg-gray-100 p-2 rounded-full transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800">বিকাশ পেমেন্ট কনফার্মেশন</h3>
+                <p class="text-sm text-gray-500 mt-1">প্রজেক্ট: <span id="modalProjectTitle" class="font-semibold text-purple-600"></span></p>
+            </div>
+
+            <div class="bg-pink-50 border border-pink-200 rounded-2xl p-4 mb-6 space-y-2 text-sm text-gray-700">
+                <p>১. বিকাশ অ্যাপ বা ডায়াল করে নিচের নম্বরে **২০০ টাকা** সেন্ড করুন:</p>
+                <div class="bg-white p-2.5 rounded-xl border border-pink-300 text-center font-bold text-pink-600 text-lg tracking-widest shadow-sm">
+                    01714969924
+                </div>
+                <p class="text-xs text-gray-500 pt-1">২. টাকা পাঠানোর পর প্রাপ্ত ট্রানজাকশন আইডি (TrxID) নিচে লিখে সাবমিট করুন।</p>
+            </div>
+
+            <form onsubmit="verifyPayment(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">আপনার বিকাশ অ্যাকাউন্ট নম্বর</label>
+                    <input type="text" id="userBkashNumber" required placeholder="যেমন: 018xxxxxxxx" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">ট্রানজাকশন আইডি (TrxID)</label>
+                    <input type="text" id="userTrxId" required placeholder="যেমন: 9E7A..." class="w-full px-4 py-3 border border-gray-300 rounded-xl uppercase focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] cursor-pointer">
+                    পেমেন্ট যাচাই করুন ও ডাউনলোড আনলক করুন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Pin Modal -->
+    <div id="adminPinModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-8 shadow-2xl relative">
+            <button onclick="closeAdminPinModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 bg-gray-100 p-2 rounded-full transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">এডমিন পিন দিন</h3>
+                <p class="text-xs text-gray-500 mt-1">প্রজেক্ট আপলোড করতে সঠিক সিক্রেট কোডটি প্রদান করুন।</p>
+            </div>
+            <form onsubmit="verifyAdminPin(event)" class="space-y-4">
+                <div>
+                    <input type="password" id="adminPinInput" required placeholder="সিক্রেট কোড (যেমন: 1986)" class="w-full text-center tracking-widest text-xl px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all">
+                </div>
+                <button type="submit" class="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 rounded-xl shadow-md transition-all cursor-pointer">
+                    প্রবেশ করুন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Upload Modal -->
+    <div id="adminUploadModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAdminUploadModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 bg-gray-100 p-2 rounded-full transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">নতুন প্রজেক্ট আপলোড করুন</h3>
+                <p class="text-sm text-gray-500 mt-1">প্রজেক্টের বিবরণ, ছবি এবং কোড যুক্ত করুন</p>
+            </div>
+            <form onsubmit="handleNewProjectUpload(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">প্রজেক্টের নাম</label>
+                    <input type="text" id="newTitle" required placeholder="যেমন: Arduino Smart Home" class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">প্রজেক্টের বিবরণ</label>
+                    <textarea id="newDesc" required rows="3" placeholder="প্রজেক্টটি সম্পর্কে সংক্ষিপ্ত বিবরণ দিন..." class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">ছবির লিংক (Image URL)</label>
+                    <input type="url" id="newImg" required placeholder="https://example.com/image.jpg" class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">আর্ডুইনো সোর্স কোড (Arduino Code)</label>
+                    <textarea id="newCode" required rows="4" placeholder="void setup() { ... }" class="w-full font-mono text-xs px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">পিনআউট বিবরণ / ফাইল লিংক</label>
+                    <textarea id="newPinout" required rows="2" placeholder="পিন কানেকশন বিবরণ দিন..." class="w-full font-mono text-xs px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all cursor-pointer">
+                    প্রজেক্ট পাবলিশ করুন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
-        // Default sample projects if storage is empty
+        // Initial Default Projects
         const defaultProjects = [
             {
-                id: 'proj_1',
-                title: 'আর্ডুইনো আল্ট্রাসনিক ডিসটেন্স মেজারমেন্ট',
-                description: 'আইটুসি ওএলইডি ডিসপ্লে এবং আল্ট্রাসনিক সেন্সর ব্যবহার করে মিলিমিটার নিখুঁত দূরত্ব পরিমাপের প্রিমিয়াম প্রজেক্ট।',
-                image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=600&q=80',
-                code: '// Ultrasonic Sensor Arduino Code\n#include <Wire.h>\nconst int trigPin = 9;\nconst int echoPin = 10;\nvoid setup() { Serial.begin(9600); pinMode(trigPin, OUTPUT); pinMode(echoPin, INPUT); }\nvoid loop() { /* code here */ }',
-                pinout: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80'
+                id: 1,
+                title: "আর্ডুইনো আল্ট্রাসনিক ডিস্টেন্স মিটার",
+                desc: "HC-SR04 সেন্সর এবং OLED ডিসপ্লে ব্যবহার করে নিখুঁত দূরত্ব পরিমাপ করার প্রজেক্ট।",
+                image: "https://images.unsplash.com/photo-1603732551681-2e91851b0cf8?auto=format&fit=crop&w=600&q=80",
+                code: `#include <Wire.h>\n#include <Adafruit_GFX.h>\n#include <Adafruit_SSD1306.h>\n\nconst int trigPin = 9;\nconst int echoPin = 10;\n\nvoid setup() {\n  pinMode(trigPin, OUTPUT);\n  pinMode(echoPin, INPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  // Code logic here\n}`,
+                pinout: "VCC -> 5V, GND -> GND, Trig -> Pin 9, Echo -> Pin 10"
             },
             {
-                id: 'proj_2',
-                title: 'ব্লুটুথ কন্ট্রোলড রোবটিক কার',
-                description: 'এইচসি-০৫ ব্লুটুথ মডিউল এবং এলটু নাইন আট ডি মোটর ড্রাইভারের সাহায্যে অ্যান্ড্রয়েড অ্যাপ দিয়ে নিয়ন্ত্রিত রোবট কার।',
-                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80',
-                code: '// Bluetooth RC Car Arduino Code\n#include <SoftwareSerial.h>\nSoftwareSerial bt(2, 3);\nvoid setup() { bt.begin(9600); Serial.begin(9600); }\nvoid loop() { if(bt.available()) { char c = bt.read(); } }',
-                pinout: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+                id: 2,
+                title: "బ్లూটুথ স্মার্ট হোম রিলায়েন্স কন্ট্রোল",
+                desc: "HC-05 ব্লুটুথ মডিউল এবং রিলে ব্যবহার করে মোবাইল অ্যাপ দিয়ে ঘরের লাইট ও ফ্যান নিয়ন্ত্রণ করুন।",
+                image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80",
+                code: `char state;\nvoid setup() {\n  pinMode(2, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  if(Serial.available() > 0){\n    state = Serial.read();\n    if(state == '1') digitalWrite(2, HIGH);\n    if(state == '0') digitalWrite(2, LOW);\n  }\n}`,
+                pinout: "Bluetooth TX -> D0, RX -> D1, Relay IN -> Pin 2"
             }
         ];
 
+        // Load Projects from LocalStorage or Default
         function getProjects() {
-            const stored = localStorage.getItem('afifa_arduino_projects');
-            if (!stored) {
-                localStorage.setItem('afifa_arduino_projects', JSON.stringify(defaultProjects));
-                return defaultProjects;
+            const saved = localStorage.getItem('afifa_arduino_projects');
+            if (saved) {
+                return JSON.parse(saved);
             }
-            try {
-                return JSON.parse(stored);
-            } catch (e) {
-                return defaultProjects;
-            }
+            localStorage.setItem('afifa_arduino_projects', JSON.stringify(defaultProjects));
+            return defaultProjects;
         }
 
         function getUnlockedProjects() {
-            const stored = localStorage.getItem('afifa_unlocked_projects');
-            return stored ? JSON.parse(stored) : [];
+            const saved = localStorage.getItem('afifa_unlocked_projects');
+            return saved ? JSON.parse(saved) : [];
         }
 
-        function saveUnlockedProject(projectId) {
-            const unlocked = getUnlockedProjects();
-            if (!unlocked.includes(projectId)) {
-                unlocked.push(projectId);
-                localStorage.setItem('afifa_unlocked_projects', JSON.stringify(unlocked));
-            }
-        }
+        let currentSelectedProjectId = null;
 
+        // Render Projects Grid
         function renderProjects() {
             const projects = getProjects();
-            const unlockedList = getUnlockedProjects();
-            const grid = document.getElementById('projectGrid');
-            const emptyState = document.getElementById('emptyState');
-            const countBadge = document.getElementById('projectCount');
-
-            countBadge.innerText = `${projects.length} টি প্রজেক্ট`;
-
-            if (projects.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
+            const unlocked = getUnlockedProjects();
+            const grid = document.getElementById('projects-grid');
             grid.innerHTML = '';
 
-            projects.forEach(proj => {
-                const isUnlocked = unlockedList.includes(proj.id);
+            projects.forEach(project => {
+                const isUnlocked = unlocked.includes(project.id);
 
                 const card = document.createElement('div');
-                card.className = "card-glass rounded-3xl shadow-xl border border-purple-100 overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-1";
-
+                card.className = "bg-white rounded-3xl shadow-xl overflow-hidden border border-purple-100 flex flex-col justify-between transform transition-all hover:-translate-y-1 hover:shadow-2xl";
+                
                 card.innerHTML = `
                     <div>
-                        <div class="h-52 overflow-hidden relative bg-gradient-to-r from-purple-100 to-pink-100">
-                            <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ede9fe/7c3aed?text=Arduino+Project'">
-                            <span class="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-lg shadow-purple-600/30">
+                        <div class="relative h-52 overflow-hidden bg-gray-100">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold px-3.5 py-1.5 rounded-full text-sm shadow-lg">
                                 ২০০ টাকা
-                            </span>
+                            </div>
                         </div>
                         <div class="p-6">
-                            <h4 class="text-lg font-extrabold text-slate-900 mb-2.5 leading-snug">${proj.title}</h4>
-                            <p class="text-slate-600 text-sm line-clamp-3 mb-4 font-normal leading-relaxed">${proj.description}</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">${project.title}</h3>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">${project.desc}</p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
+                    <div class="px-6 pb-6 pt-0 space-y-3">
                         ${isUnlocked ? `
-                            <div class="space-y-3">
-                                <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-2 rounded-2xl text-center flex items-center justify-center gap-1.5 shadow-sm">
-                                    <i class="fa-solid fa-circle-check text-emerald-600"></i> পেমেন্ট সফল ও আনলক করা হয়েছে
+                            <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl space-y-3">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    পেমেন্ট সফল ও ডাউনলোড সচল!
                                 </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <button onclick="downloadCode('${proj.id}')" class="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white text-xs font-bold py-3 px-3 rounded-2xl transition flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transform hover:-translate-y-0.5">
-                                        <i class="fa-solid fa-code"></i> সোর্স কোড
-                                    </button>
-                                    <button onclick="downloadPinout('${proj.id}')" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-bold py-3 px-3 rounded-2xl transition flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 transform hover:-translate-y-0.5">
-                                        <i class="fa-solid fa-diagram-project"></i> পিনআউট
-                                    </button>
+                                <div>
+                                    <span class="text-xs font-semibold text-gray-700 block mb-1">সোর্স কোড:</span>
+                                    <pre class="bg-gray-900 text-green-400 p-3 rounded-xl text-xs font-mono overflow-x-auto max-h-32">${escapeHtml(project.code)}</pre>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold text-gray-700 block mb-1">পিনআউট বিবরণ:</span>
+                                    <p class="bg-gray-100 p-2.5 rounded-xl text-xs font-mono text-gray-800">${project.pinout}</p>
                                 </div>
                             </div>
                         ` : `
-                            <div class="space-y-3">
-                                <div class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold px-3 py-2 rounded-2xl text-center flex items-center justify-center gap-1.5 shadow-sm">
-                                    <i class="fa-solid fa-lock text-amber-600"></i> ডাউনলোড লক করা (২০০ টাকা প্রয়োজন)
-                                </div>
-                                <button onclick="openPaymentModal('${proj.id}', '${escapeHtml(proj.title)}')" class="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-extrabold py-3 px-4 rounded-2xl transition text-sm flex items-center justify-center gap-2 shadow-xl shadow-pink-600/30 transform hover:-translate-y-0.5">
-                                    <i class="fa-solid fa-wallet"></i> বিকাশ পেমেন্ট করে আনলক করুন
-                                </button>
-                            </div>
+                            <button onclick="openPaymentModal(${project.id}, '${project.title}')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                ২০০ টাকা দিয়ে কোড ও পিনআউট আনলক করুন
+                            </button>
                         `}
                     </div>
                 `;
@@ -354,140 +274,94 @@
         }
 
         function escapeHtml(text) {
-            return text.replace(/'/g, "&apos;").replace(/"/g, "&quot;");
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        function openPaymentModal(projectId, projectTitle) {
-            document.getElementById('paymentProjectId').value = projectId;
-            document.getElementById('modalProjectTitle').innerText = projectTitle;
-            document.getElementById('userBkashNumber').value = '';
-            document.getElementById('userTrxId').value = '';
+        // Payment Modal Functions
+        function openPaymentModal(projectId, title) {
+            currentSelectedProjectId = projectId;
+            document.getElementById('modalProjectTitle').innerText = title;
             document.getElementById('paymentModal').classList.remove('hidden');
         }
 
         function closePaymentModal() {
             document.getElementById('paymentModal').classList.add('hidden');
+            currentSelectedProjectId = null;
         }
 
-        function submitPayment(e) {
+        function verifyPayment(e) {
             e.preventDefault();
-            const projectId = document.getElementById('paymentProjectId').value;
             const bkashNum = document.getElementById('userBkashNumber').value;
             const trxId = document.getElementById('userTrxId').value;
 
-            if (!bkashNum || !trxId) {
-                showCustomAlert('ত্রুটি', 'দয়া করে আপনার বিকাশ নম্বর এবং ট্রানজাকশন আইডি (TrxID) প্রদান করুন।', 'error');
-                return;
+            if(bkashNum && trxId) {
+                let unlocked = getUnlockedProjects();
+                if(!unlocked.includes(currentSelectedProjectId)) {
+                    unlocked.push(currentSelectedProjectId);
+                    localStorage.setItem('afifa_unlocked_projects', JSON.stringify(unlocked));
+                }
+                alert("ধন্যবাদ! আপনার পেমেন্ট সফলভাবে যাচাই করা হয়েছে এবং প্রজেক্ট ফাইল ডাউনলোড অপশন অ্যাক্টিভ হয়েছে।");
+                closePaymentModal();
+                renderProjects();
             }
-
-            saveUnlockedProject(projectId);
-            closePaymentModal();
-            renderProjects();
-            showCustomAlert('অভিনন্দন!', 'আপনার পেমেন্ট সফলভাবে যাচাই করা হয়েছে। প্রজেক্ট ফাইলগুলো এখন ডাউনলোডের জন্য উন্মুক্ত!', 'success');
         }
 
-        function downloadCode(projectId) {
-            const projects = getProjects();
-            const proj = projects.find(p => p.id === projectId);
-            if (!proj) return;
-
-            const element = document.createElement('a');
-            const file = new Blob([proj.code], {type: 'text/plain'});
-            element.href = URL.createObjectURL(file);
-            element.download = `${proj.title.replace(/\s+/g, '_')}_Code.ino`;
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+        // Admin Security & Upload Functions
+        function openAdminModal() {
+            document.getElementById('adminPinModal').classList.remove('hidden');
         }
 
-        function downloadPinout(projectId) {
-            const projects = getProjects();
-            const proj = projects.find(p => p.id === projectId);
-            if (!proj) return;
-
-            window.open(proj.pinout, '_blank');
-        }
-
-        function openAdminLoginModal() {
+        function closeAdminPinModal() {
+            document.getElementById('adminPinModal').classList.add('hidden');
             document.getElementById('adminPinInput').value = '';
-            document.getElementById('adminLoginModal').classList.remove('hidden');
-        }
-
-        function closeAdminLoginModal() {
-            document.getElementById('adminLoginModal').classList.add('hidden');
         }
 
         function verifyAdminPin(e) {
             e.preventDefault();
             const pin = document.getElementById('adminPinInput').value;
-            if (pin === '1986') {
-                closeAdminLoginModal();
-                openAdminUploadModal();
+            if(pin === '1986') {
+                closeAdminPinModal();
+                document.getElementById('adminUploadModal').classList.remove('hidden');
             } else {
-                showCustomAlert('ভুল পিন কোড', 'দুঃখিত, আপনি ভুল পিন দিয়েছেন। সঠিক পিন কোড দিন (কোড: 1986)।', 'error');
+                alert("ভুল পিন দিয়েছেন! সঠিক পিন (1986) দিয়ে আবার চেষ্টা করুন।");
             }
-        }
-
-        function openAdminUploadModal() {
-            document.getElementById('uploadProjectForm').reset();
-            document.getElementById('adminUploadModal').classList.remove('hidden');
         }
 
         function closeAdminUploadModal() {
             document.getElementById('adminUploadModal').classList.add('hidden');
         }
 
-        function handleProjectUpload(e) {
+        function handleNewProjectUpload(e) {
             e.preventDefault();
             const title = document.getElementById('newTitle').value;
-            const description = document.getElementById('newDesc').value;
-            const image = document.getElementById('newImage').value;
+            const desc = document.getElementById('newDesc').value;
+            const image = document.getElementById('newImg').value;
             const code = document.getElementById('newCode').value;
-            const pinout = document.getElementById('newPinout0').value || document.getElementById('newPinout').value;
+            const pinout = document.getElementById('newPinout').value;
 
+            let projects = getProjects();
             const newProj = {
-                id: 'proj_' + Date.now(),
+                id: Date.now(),
                 title,
-                description,
+                desc,
                 image,
                 code,
                 pinout
             };
 
-            const projects = getProjects();
             projects.unshift(newProj);
             localStorage.setItem('afifa_arduino_projects', JSON.stringify(projects));
-
+            
+            alert("নতুন প্রজেক্ট সফলভাবে আপলোড এবং পাবলিশ করা হয়েছে!");
             closeAdminUploadModal();
             renderProjects();
-            showCustomAlert('সফল!', 'আপনার নতুন প্রজেক্ট সফলভাবে আপলোড এবং পাবলিশ করা হয়েছে।', 'success');
+            e.target.reset();
         }
 
-        function showCustomAlert(title, message, type = 'success') {
-            document.getElementById('alertTitle').innerText = title;
-            document.getElementById('alertMessage').innerText = message;
-            const iconBox = document.getElementById('alertIconBox');
-            const alertIcon = document.getElementById('alertIcon');
-
-            if (type === 'error') {
-                iconBox.className = "w-16 h-16 bg-gradient-to-tr from-rose-500 to-red-600 text-white rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4 shadow-lg shadow-rose-500/30";
-                alertIcon.className = "fa-solid fa-circle-exclamation";
-            } else {
-                iconBox.className = "w-16 h-16 bg-gradient-to-tr from-purple-500 to-pink-500 text-white rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4 shadow-lg shadow-purple-500/30";
-                alertIcon.className = "fa-solid fa-circle-check";
-            }
-
-            document.getElementById('customAlertModal').classList.remove('hidden');
-        }
-
-        function closeCustomAlert() {
-            document.getElementById('customAlertModal').classList.add('hidden');
-        }
-
+        // Initial Load Call
         window.onload = function() {
             renderProjects();
         };
     </script>
-
 </body>
 </html>
